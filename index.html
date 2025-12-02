@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashik Iqbal | Android Developer</title>
+    <meta name="description" content="Portfolio of Ashik Iqbal - Android Developer specializing in Kotlin and Jetpack Compose.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Markdown Parser for AI Responses -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        android: {
+                            DEFAULT: '#3DDC84', // Android Green
+                            dark: '#32B36A',
+                        },
+                        slate: {
+                            850: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for code-like feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3DDC84;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* AI Chat Animations */
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .message-anim {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-android selection:text-slate-900 relative">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-card border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <span class="text-2xl font-bold text-white tracking-tighter">Ashik<span class="text-android">.Dev</span></span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-android transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#experience" class="hover:text-android transition-colors px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+                        <a href="#projects" class="hover:text-android transition-colors px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#skills" class="hover:text-android transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#contact" class="px-4 py-2 rounded-full bg-android text-slate-900 font-bold hover:bg-android-dark transition-all text-sm">Hire Me</a>
+                    </div>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:text-android hover:bg-slate-700">About</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium hover:text-android hover:bg-slate-700">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium hover:text-android hover:bg-slate-700">Projects</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-android font-bold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 space-y-6 animate-fade-in-up">
+            <!-- Profile Picture -->
+            <div class="relative w-32 h-32 mb-2 group">
+                <div class="absolute inset-0 bg-android rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <!-- REPLACE 'src' BELOW WITH YOUR OWN IMAGE PATH (e.g., src="my-photo.jpg") -->
+                <img src="https://ui-avatars.com/api/?name=Ashik+Iqbal&background=3DDC84&color=0f172a&size=256" 
+                     alt="Ashik Iqbal" 
+                     class="relative w-32 h-32 rounded-full border-4 border-slate-800 object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+
+            <div class="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-android uppercase bg-slate-800 rounded-full border border-android/20">
+                Android Developer
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight">
+                Building Modern <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-android to-teal-400">Mobile Experiences</span>
+            </h1>
+            <p class="text-lg text-slate-400 max-w-xl">
+                I'm <strong>Ashik Iqbal</strong>, a results-oriented developer specializing in <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>. I engineer scalable mobile solutions, currently building enterprise HRMS and Payroll systems.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-4">
+                <button onclick="toggleChat()" class="px-8 py-3 rounded-lg bg-gradient-to-r from-android to-teal-500 text-slate-900 font-bold hover:shadow-lg hover:shadow-android/30 transition-all hover:-translate-y-1">
+                    ✨ Ask AI About Me
+                </button>
+                <a href="#contact" class="px-8 py-3 rounded-lg border border-slate-600 hover:border-android hover:text-android transition-colors">
+                    Contact Me
+                </a>
+            </div>
+            <div class="flex gap-6 pt-4 text-2xl text-slate-500">
+                <a href="https://github.com/Ash1ik" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:ashikiqbal.nitercse@gmail.com" class="hover:text-white transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+        <!-- Abstract Visual Representation of Mobile Code -->
+        <div class="flex-1 w-full flex justify-center relative">
+            <div class="relative w-72 h-[580px] bg-slate-900 border-8 border-slate-800 rounded-[3rem] shadow-2xl overflow-hidden z-10 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500">
+                <!-- Status Bar -->
+                <div class="absolute top-0 w-full h-8 bg-slate-800 flex justify-between px-6 items-center z-20">
+                    <div class="text-[10px] text-white">9:41</div>
+                    <div class="flex gap-1">
+                        <div class="w-3 h-3 bg-white rounded-full opacity-80"></div>
+                        <div class="w-3 h-3 bg-white rounded-full opacity-80"></div>
+                    </div>
+                </div>
+                <!-- Screen Content -->
+                <div class="mt-8 p-4 space-y-4 h-full bg-slate-800/50">
+                    <div class="w-full h-40 bg-gradient-to-br from-android to-teal-600 rounded-2xl flex items-center justify-center shadow-lg">
+                        <i class="fab fa-android text-5xl text-slate-900 animate-bounce"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="h-4 bg-slate-700 rounded w-3/4"></div>
+                        <div class="h-4 bg-slate-700 rounded w-1/2"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 pt-4">
+                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse"></div>
+                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-75"></div>
+                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-150"></div>
+                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-200"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Decorative Elements -->
+            <div class="absolute top-10 right-10 w-64 h-64 bg-android/20 rounded-full blur-3xl -z-10"></div>
+            <div class="absolute bottom-10 left-10 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -z-10"></div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Professional Experience</h2>
+                <div class="w-20 h-1 bg-android mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative border-l border-slate-700 ml-4 md:ml-0 md:max-w-4xl md:mx-auto space-y-12">
+                <!-- Job Item 1 -->
+                <div class="relative pl-8 md:pl-0">
+                    <!-- Timeline Dot -->
+                    <div class="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-android ring-4 ring-slate-900 md:hidden"></div>
+                    
+                    <div class="md:flex items-start justify-between group">
+                        <!-- Date (Desktop) -->
+                        <div class="hidden md:block w-32 text-right pr-8 pt-1">
+                            <span class="text-android font-mono text-sm">June 2025 - Present</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="flex-1 glass-card p-6 rounded-2xl hover:border-android/50 transition-colors">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Jr. Software Engineer</h3>
+                                    <p class="text-slate-400">SMAC IT LTD • Dhaka, Bangladesh</p>
+                                </div>
+                                <span class="md:hidden text-android font-mono text-xs bg-slate-800 px-2 py-1 rounded">2025 - Present</span>
+                            </div>
+                            <ul class="space-y-3 text-slate-300 list-disc list-inside marker:text-android">
+                                <li>Spearheaded the full-cycle development of the <strong>Radiant Pharmaceuticals HRMS & Payroll</strong> application.</li>
+                                <li>Engineered a precise attendance tracking module by integrating <strong>Google Maps API</strong> for real-time geo-verification.</li>
+                                <li>Optimized network operations using <strong>Retrofit</strong> and <strong>Kotlin Coroutines</strong>, ensuring efficient data handling.</li>
+                                <li>Collaborated with teams to translate Figma designs into pixel-perfect <strong>Jetpack Compose</strong> UI components.</li>
+                            </ul>
+                        </div>
+                        <!-- Timeline Node (Desktop) -->
+                        <div class="hidden md:block absolute left-[158px] top-6 w-4 h-4 rounded-full bg-android ring-8 ring-slate-900 transform -translate-x-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Featured Projects</h2>
+                <p class="text-slate-400">Personal projects and case studies.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+                        <i class="fas fa-utensils text-6xl text-slate-700 group-hover:text-android transition-colors duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Recipe Tutorial App</h3>
+                        <p class="text-slate-400 text-sm mb-4">A social platform for culinary enthusiasts to share and discover recipes.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">Kotlin</span>
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">Jetpack Compose</span>
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">MVVM</span>
+                        </div>
+                        <a href="https://github.com/Ash1ik" target="_blank" class="inline-flex items-center text-sm font-bold text-white hover:text-android transition-colors">
+                            View Code <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+                        <i class="fas fa-question-circle text-6xl text-slate-700 group-hover:text-android transition-colors duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Dynamic Quiz App</h3>
+                        <p class="text-slate-400 text-sm mb-4">Interactive quiz application integrated with external APIs for dynamic content.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">API Integration</span>
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">Clean Arch</span>
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">UI/UX</span>
+                        </div>
+                        <a href="https://github.com/Ash1ik" target="_blank" class="inline-flex items-center text-sm font-bold text-white hover:text-android transition-colors">
+                            View Code <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+                        <i class="fas fa-coffee text-6xl text-slate-700 group-hover:text-android transition-colors duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Coffee Order App</h3>
+                        <p class="text-slate-400 text-sm mb-4">Seamless ordering experience featuring Lottie animations and ViewModel state management.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">Lottie</span>
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">LiveData</span>
+                            <span class="px-2 py-1 text-xs rounded bg-slate-800 text-android border border-android/20">Navigation</span>
+                        </div>
+                        <a href="https://github.com/Ash1ik" target="_blank" class="inline-flex items-center text-sm font-bold text-white hover:text-android transition-colors">
+                            View Code <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Education Section -->
+    <section id="skills" class="py-20 bg-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Skills -->
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-code text-android mr-3"></i> Technical Skills
+                    </h2>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400 uppercase mb-3 tracking-wider">Languages</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Kotlin</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Java</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">C++</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">C</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400 uppercase mb-3 tracking-wider">Android Ecosystem</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Jetpack Compose</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">XML</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Coroutines</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Retrofit</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Room DB</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400 uppercase mb-3 tracking-wider">Tools & Others</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Firebase</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Git & GitHub</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Figma</span>
+                                    <span class="px-3 py-1 rounded bg-slate-700 text-white text-sm">Android Studio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education & Leadership -->
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-graduation-cap text-android mr-3"></i> Education & Leadership
+                    </h2>
+                    <div class="space-y-6">
+                        <!-- Education -->
+                        <div class="glass-card p-6 rounded-2xl border-l-4 border-android">
+                            <h3 class="text-lg font-bold text-white">BSc in Computer Science & Engineering</h3>
+                            <p class="text-android">NITER (University of Dhaka)</p>
+                            <p class="text-slate-400 text-sm mt-1">Expected Graduation: Dec 2026</p>
+                            <p class="text-slate-500 text-sm mt-2">Savar, Dhaka, Bangladesh</p>
+                        </div>
+                        
+                        <!-- Leadership -->
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h4 class="text-sm font-semibold text-slate-400 uppercase mb-4 tracking-wider">Leadership</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between items-start">
+                                        <h5 class="text-white font-medium">Vice President</h5>
+                                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded">2025-Present</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm">NITER Computer Club (NCC)</p>
+                                </div>
+                                <div class="pt-2 border-t border-slate-700">
+                                    <div class="flex justify-between items-start mt-2">
+                                        <h5 class="text-white font-medium">Campus Ambassador</h5>
+                                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded">April 2025</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm">UAP TechThrone 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section with Magic Drafter -->
+    <footer id="contact" class="bg-slate-900 border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                
+                <!-- Contact Info -->
+                <div class="text-left space-y-6">
+                    <h2 class="text-2xl font-bold text-white mb-4">Let's Build Something Amazing</h2>
+                    <p class="text-slate-400">
+                        Have an idea for an Android app? I'm currently available for freelance projects and job opportunities.
+                    </p>
+                    <div class="flex flex-col gap-4">
+                        <a href="mailto:ashikiqbal.nitercse@gmail.com" class="flex items-center gap-3 text-slate-300 hover:text-android transition-colors">
+                            <i class="fas fa-envelope text-xl"></i> ashikiqbal.nitercse@gmail.com
+                        </a>
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <i class="fas fa-map-marker-alt text-xl"></i> Dhaka, Bangladesh
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mt-6">
+                        <a href="mailto:ashikiqbal.nitercse@gmail.com" class="px-6 py-3 rounded-lg bg-android text-slate-900 font-bold hover:bg-android-dark transition-colors">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Email
+                        </a>
+                        <a href="#" class="px-6 py-3 rounded-lg border border-slate-700 text-white hover:border-android hover:text-android transition-colors">
+                            <i class="fas fa-file-pdf mr-2"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Magic Email Drafter -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-android/20 rounded-full blur-2xl group-hover:bg-android/30 transition-all"></div>
+                    
+                    <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fas fa-magic text-android"></i> Magic Message Drafter
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-4">
+                        Not sure what to say? Type a few keywords (e.g., "Need e-commerce app, $2k budget") and let AI write a professional email for you!
+                    </p>
+                    
+                    <div class="space-y-3">
+                        <input type="text" id="draftInput" placeholder="E.g. I need a fitness app with tracking..." 
+                               class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-android text-sm">
+                        
+                        <button onclick="generateDraft()" id="draftBtn" class="w-full py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-medium transition-colors flex justify-center items-center gap-2">
+                            <span>✨ Generate Draft</span>
+                        </button>
+                        
+                        <div class="relative">
+                            <textarea id="draftOutput" rows="4" placeholder="AI generated draft will appear here..." 
+                                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2 text-slate-300 text-sm focus:outline-none focus:border-android font-mono"></textarea>
+                            <button onclick="copyDraft()" class="absolute top-2 right-2 text-xs bg-slate-800 p-1 rounded text-slate-400 hover:text-white" title="Copy">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-slate-500 text-sm text-center mt-12 pt-8 border-t border-slate-800">
+                <p>&copy; 2025 Ashik Iqbal. Built with HTML, Tailwind, and <i class="fas fa-heart text-android"></i>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot Widget -->
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden mb-4 w-[350px] md:w-[400px] glass-card rounded-2xl shadow-2xl border border-slate-700 overflow-hidden flex flex-col h-[500px] transition-all duration-300 origin-bottom-right transform scale-95 opacity-0">
+            <!-- Header -->
+            <div class="bg-slate-800/80 p-4 border-b border-slate-700 flex justify-between items-center backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-android animate-pulse"></div>
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Ask Ashik AI</h3>
+                        <p class="text-xs text-slate-400">Powered by Gemini</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-900/60 scroll-smooth">
+                <!-- Welcome Message -->
+                <div class="flex gap-3 items-start message-anim">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-android to-teal-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-robot text-slate-900 text-xs"></i>
+                    </div>
+                    <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none text-sm shadow-md">
+                        Hi! I'm Ashik's AI Assistant. I know everything about his skills, projects, and resume. Ask me anything! ✨
+                    </div>
+                </div>
+                <!-- Suggested Questions -->
+                <div class="flex flex-wrap gap-2 pl-11 message-anim" style="animation-delay: 0.1s;">
+                    <button onclick="sendPreset('What are your main skills?')" class="text-xs bg-slate-800/50 hover:bg-android/10 hover:text-android border border-slate-700 hover:border-android px-3 py-1.5 rounded-full transition-all">
+                        Technical Skills?
+                    </button>
+                    <button onclick="sendPreset('Tell me about the Payroll App')" class="text-xs bg-slate-800/50 hover:bg-android/10 hover:text-android border border-slate-700 hover:border-android px-3 py-1.5 rounded-full transition-all">
+                        Payroll App?
+                    </button>
+                    <button onclick="sendPreset('Why should I hire you?')" class="text-xs bg-slate-800/50 hover:bg-android/10 hover:text-android border border-slate-700 hover:border-android px-3 py-1.5 rounded-full transition-all">
+                        Why hire you?
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 bg-slate-800/50 border-t border-slate-700 backdrop-blur-md">
+                <form onsubmit="handleChat(event)" class="relative">
+                    <input type="text" id="chatInput" placeholder="Ask about Kotlin, Experience..." 
+                           class="w-full bg-slate-900 border border-slate-700 rounded-full pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-android focus:ring-1 focus:ring-android/50 transition-all shadow-inner">
+                    <button type="submit" class="absolute right-2 top-1.5 w-8 h-8 rounded-full bg-android text-slate-900 flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+                        <i class="fas fa-arrow-up text-sm"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleChat()" class="group flex items-center gap-2">
+            <span class="bg-white text-slate-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2">
+                Chat with me!
+            </span>
+            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-android to-teal-400 flex items-center justify-center shadow-lg shadow-android/30 hover:scale-110 transition-transform cursor-pointer border-2 border-slate-800">
+                <i class="fas fa-sparkles text-slate-900 text-xl animate-pulse"></i>
+            </div>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const apiKey = ""; // System will provide API key
+        
+        // --- Resume Data Context for AI ---
+        const resumeContext = `
+        NAME: Ashik Iqbal
+        ROLE: Android Developer (Junior Software Engineer)
+        LOCATION: Dhaka, Bangladesh
+        CONTACT: ashikiqbal.nitercse@gmail.com | 01571291568 | github.com/Ash1ik
+
+        PROFESSIONAL SUMMARY:
+        Results-oriented Android Developer specializing in Kotlin and Jetpack Compose. 
+        Experience in engineering scalable mobile solutions using Clean Architecture and MVVM patterns. 
+        Currently building enterprise-level HRMS and Payroll systems with complex REST API integrations and real-time location services.
+
+        EXPERIENCE:
+        1. Jr. Software Engineer at SMAC IT LTD (June 2025 - Present)
+           - Spearheaded development of Radiant Pharmaceuticals HRMS & Payroll App.
+           - Engineered attendance tracking module using Google Maps API for real-time geo-verification.
+           - Optimized network operations using Retrofit and Kotlin Coroutines.
+           - Built UI with Jetpack Compose based on Figma designs.
+
+        PROJECTS:
+        1. Recipe Tutorial App: Social platform for recipes. Tech: Kotlin, Jetpack Compose, MVVM. Users can post, like, mark favorites.
+        2. Dynamic Quiz App: Quiz app using external API. Tech: Kotlin, Compose, Clean Architecture.
+        3. Coffee Order App: Ordering app with Lottie animations. Tech: ViewModel, LiveData, Navigation.
+
+        SKILLS:
+        - Languages: Kotlin, Java, C++, C
+        - Android: Jetpack Compose, XML, Coroutines, Retrofit, Room Database
+        - Tools: Firebase, Git, GitHub, Figma, Android Studio
+        
+        EDUCATION:
+        BSc in Computer Science & Engineering - NITER (University of Dhaka), Expected Dec 2026.
+        
+        LEADERSHIP:
+        - Vice President, NITER Computer Club (2025-Present)
+        - Campus Ambassador, UAP TechThrone 2025
+        `;
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- Chat Widget Logic ---
+        const chatWindow = document.getElementById('chat-window');
+        const messagesContainer = document.getElementById('chat-messages');
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            if (chatOpen) {
+                chatWindow.classList.remove('hidden');
+                // Small timeout to allow removing hidden before animating opacity
+                setTimeout(() => {
+                    chatWindow.classList.remove('scale-95', 'opacity-0');
+                    chatWindow.classList.add('scale-100', 'opacity-100');
+                    document.getElementById('chatInput').focus();
+                }, 10);
+            } else {
+                chatWindow.classList.remove('scale-100', 'opacity-100');
+                chatWindow.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function sendPreset(text) {
+            const input = document.getElementById('chatInput');
+            input.value = text;
+            handleChat(new Event('submit'));
+        }
+
+        async function handleChat(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const userText = input.value.trim();
+            if (!userText) return;
+
+            // Add User Message
+            addMessage(userText, 'user');
+            input.value = '';
+
+            // Add Loading Indicator
+            const loadingId = addLoading();
+
+            try {
+                // Construct Prompt
+                const systemPrompt = `You are the AI Assistant for Ashik Iqbal's portfolio. 
+                Your goal is to get Ashik hired as an Android Developer.
+                You are professional, enthusiastic, and concise.
+                Use emojis occasionally.
+                
+                RESUME CONTEXT:
+                ${resumeContext}
+                
+                USER QUESTION: ${userText}
+                
+                If the user asks about a skill Ashik has, highlight a specific project or experience where he used it.
+                If asked about a skill not listed (like iOS or React), honestly say he focuses on Native Android but is a fast learner (mention his C++ Bootcamp).
+                Keep answers short (under 3 sentences) unless asked for details.`;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: systemPrompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble connecting right now. Try again later!";
+                
+                removeLoading(loadingId);
+                addMessage(aiText, 'ai');
+
+            } catch (error) {
+                console.error(error);
+                removeLoading(loadingId);
+                addMessage("Oops! My brain is offline. Please check your internet.", 'ai');
+            }
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `flex gap-3 items-start message-anim ${sender === 'user' ? 'flex-row-reverse' : ''}`;
+            
+            const avatar = sender === 'ai' 
+                ? `<div class="w-8 h-8 rounded-full bg-gradient-to-br from-android to-teal-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-robot text-slate-900 text-xs"></i></div>`
+                : `<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0"><i class="fas fa-user text-slate-300 text-xs"></i></div>`;
+
+            const bubbleClass = sender === 'ai' 
+                ? 'bg-slate-800 text-slate-200 rounded-tl-none' 
+                : 'bg-android text-slate-900 rounded-tr-none font-medium';
+
+            // Parse Markdown for AI messages
+            const content = sender === 'ai' ? marked.parse(text) : text;
+
+            div.innerHTML = `
+                ${avatar}
+                <div class="${bubbleClass} p-3 rounded-2xl text-sm shadow-md max-w-[80%] prose prose-invert prose-p:my-0 prose-ul:my-1">
+                    ${content}
+                </div>
+            `;
+            messagesContainer.appendChild(div);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function addLoading() {
+            const id = 'loading-' + Date.now();
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'flex gap-3 items-start message-anim';
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-android to-teal-600 flex items-center justify-center flex-shrink-0"><i class="fas fa-robot text-slate-900 text-xs"></i></div>
+                <div class="bg-slate-800 p-4 rounded-2xl rounded-tl-none flex gap-1 items-center h-10">
+                    <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
+                    <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
+                    <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
+                </div>
+            `;
+            messagesContainer.appendChild(div);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return id;
+        }
+
+        function removeLoading(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        // --- Magic Email Drafter Logic ---
+        async function generateDraft() {
+            const input = document.getElementById('draftInput').value;
+            const btn = document.getElementById('draftBtn');
+            const output = document.getElementById('draftOutput');
+            
+            if (!input) return;
+
+            // UI Loading State
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Drafting...`;
+            btn.disabled = true;
+
+            try {
+                const systemPrompt = `
+                You are a professional business assistant. 
+                Task: Write a short, polite, and professional email inquiry to Ashik Iqbal (Android Developer).
+                Based on this user intent: "${input}"
+                
+                The email should:
+                - Be addressed to Ashik.
+                - Mention the user's project idea briefly.
+                - Ask for a meeting or quote.
+                - Be concise (under 100 words).
+                - Use placeholders like [My Name] for missing info.
+                `;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: systemPrompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                const draft = data.candidates?.[0]?.content?.parts?.[0]?.text || "Error generating draft.";
+                
+                output.value = draft;
+            } catch (error) {
+                console.error(error);
+                output.value = "Error connecting to AI. Please try again.";
+            } finally {
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+            }
+        }
+
+        function copyDraft() {
+            const copyText = document.getElementById("draftOutput");
+            copyText.select();
+            document.execCommand("copy"); // Fallback for iframe safety
+            
+            const btn = document.querySelector('button[onclick="copyDraft()"]');
+            const originalIcon = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check text-android"></i>';
+            setTimeout(() => {
+                btn.innerHTML = originalIcon;
+            }, 2000);
+        }
+
+        // Smooth Scroll adjustment
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
