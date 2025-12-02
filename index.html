@@ -118,8 +118,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="about" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-        <div class="flex-1 space-y-6 animate-fade-in-up">
+    <section id="about" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 overflow-hidden">
+        <div class="flex-1 space-y-6 animate-fade-in-up z-10">
             <!-- Profile Picture -->
             <div class="relative w-32 h-32 mb-2 group">
                 <div class="absolute inset-0 bg-android rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
@@ -153,40 +153,92 @@
                 <a href="#" target="_blank" class="hover:text-white transition-colors" title="Facebook"><i class="fab fa-facebook"></i></a>
                 <a href="#" target="_blank" class="hover:text-white transition-colors" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <!-- Website & Chat Icons -->
+                <a href="#" target="_blank" class="hover:text-white transition-colors" title="Website"><i class="fas fa-globe"></i></a>
                 <button onclick="toggleChat()" class="hover:text-android transition-colors" title="Chat with AI"><i class="fas fa-robot"></i></button>
                 
                 <a href="mailto:ashikiqbal.nitercse@gmail.com" class="hover:text-white transition-colors" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
-        <!-- Abstract Visual Representation of Mobile Code -->
-        <div class="flex-1 w-full flex justify-center relative">
-            <div class="relative w-72 h-[580px] bg-slate-900 border-8 border-slate-800 rounded-[3rem] shadow-2xl overflow-hidden z-10 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500">
-                <!-- Status Bar -->
-                <div class="absolute top-0 w-full h-8 bg-slate-800 flex justify-between px-6 items-center z-20">
-                    <div class="text-[10px] text-white">9:41</div>
-                    <div class="flex gap-1">
-                        <div class="w-3 h-3 bg-white rounded-full opacity-80"></div>
-                        <div class="w-3 h-3 bg-white rounded-full opacity-80"></div>
-                    </div>
+        
+        <!-- Mobile Code Visual with Scattered Stickers -->
+        <div class="flex-1 w-full flex justify-center relative mt-12 md:mt-0">
+            <!-- Stickers Container (Relative to the phone wrapper) -->
+            <div class="relative w-72 h-[580px]">
+                
+                <!-- Left Side Stickers -->
+                <!-- Kotlin -->
+                <div class="absolute -left-20 top-0 w-16 h-16 bg-slate-300 p-2 rounded-xl shadow-2xl -rotate-12 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Kotlin">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin" class="w-full h-full">
                 </div>
-                <!-- Screen Content -->
-                <div class="mt-8 p-4 space-y-4 h-full bg-slate-800/50">
-                    <div class="w-full h-40 bg-gradient-to-br from-android to-teal-600 rounded-2xl flex items-center justify-center shadow-lg">
-                        <i class="fab fa-android text-5xl text-slate-900 animate-bounce"></i>
+                <!-- Java -->
+                <div class="absolute -left-12 top-32 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl rotate-6 z-0 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Java">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-full h-full">
+                </div>
+                <!-- Figma -->
+                <div class="absolute -left-24 bottom-40 w-16 h-16 bg-slate-300 p-2 rounded-xl shadow-2xl -rotate-45 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Figma">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="w-full h-full">
+                </div>
+                <!-- XML (Text) -->
+                 <div class="absolute -left-10 bottom-20 w-12 h-12 bg-slate-300 p-2 rounded-xl shadow-2xl rotate-12 z-0 hover:scale-110 transition-transform duration-300 hover:rotate-0 flex items-center justify-center font-bold text-slate-800 text-xs" title="XML">
+                    &lt;XML&gt;
+                </div>
+                <!-- C++ -->
+                <div class="absolute -left-20 bottom-10 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl -rotate-6 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="C++">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" class="w-full h-full">
+                </div>
+
+                <!-- Right Side Stickers -->
+                <!-- Jetpack Compose (Correct Logo) -->
+                <div class="absolute -right-16 top-10 w-16 h-16 bg-slate-300 p-2 rounded-xl shadow-2xl rotate-12 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Jetpack Compose">
+                    <img src="https://developer.android.com/static/images/jetpack/compose_logo.svg" alt="Compose" class="w-full h-full">
+                </div>
+                <!-- Compose Multiplatform (Using Compose logo as representative) -->
+                <div class="absolute -right-8 top-40 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl -rotate-12 z-0 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Compose Multiplatform">
+                   <img src="https://developer.android.com/static/images/jetpack/compose_logo.svg" alt="Compose Multiplatform" class="w-full h-full">
+                </div>
+                <!-- Python -->
+                <div class="absolute -right-24 bottom-1/2 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl rotate-45 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Python">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-full h-full">
+                </div>
+                <!-- GitHub -->
+                <div class="absolute -right-12 bottom-20 w-16 h-16 bg-slate-300 p-2 rounded-xl shadow-2xl -rotate-6 z-0 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="GitHub">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-full h-full">
+                </div>
+                <!-- C -->
+                 <div class="absolute -right-20 bottom-5 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl rotate-12 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="C">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" class="w-full h-full">
+                </div>
+
+                <!-- The Phone Itself -->
+                <div class="relative w-full h-full bg-slate-900 border-8 border-slate-800 rounded-[3rem] shadow-2xl overflow-hidden z-10 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500">
+                    <!-- Status Bar -->
+                    <div class="absolute top-0 w-full h-8 bg-slate-800 flex justify-between px-6 items-center z-20">
+                        <div class="text-[10px] text-white">9:41</div>
+                        <div class="flex gap-1">
+                            <div class="w-3 h-3 bg-white rounded-full opacity-80"></div>
+                            <div class="w-3 h-3 bg-white rounded-full opacity-80"></div>
+                        </div>
                     </div>
-                    <div class="space-y-2">
-                        <div class="h-4 bg-slate-700 rounded w-3/4"></div>
-                        <div class="h-4 bg-slate-700 rounded w-1/2"></div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4">
-                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse"></div>
-                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-75"></div>
-                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-150"></div>
-                        <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-200"></div>
+                    <!-- Screen Content -->
+                    <div class="mt-8 p-4 space-y-4 h-full bg-slate-800/50">
+                        <div class="w-full h-40 bg-gradient-to-br from-android to-teal-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fab fa-android text-5xl text-slate-900 animate-bounce"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-4 bg-slate-700 rounded w-3/4"></div>
+                            <div class="h-4 bg-slate-700 rounded w-1/2"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-4">
+                            <div class="h-24 bg-slate-700 rounded-xl animate-pulse"></div>
+                            <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-75"></div>
+                            <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-150"></div>
+                            <div class="h-24 bg-slate-700 rounded-xl animate-pulse delay-200"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Decorative Elements -->
+            
+            <!-- Decorative Elements behind everything -->
             <div class="absolute top-10 right-10 w-64 h-64 bg-android/20 rounded-full blur-3xl -z-10"></div>
             <div class="absolute bottom-10 left-10 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -z-10"></div>
         </div>
@@ -788,4 +840,3 @@
     </script>
 </body>
 </html>
-
