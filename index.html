@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashik Iqbal | Android Developer</title>
     <meta name="description" content="Portfolio of Ashik Iqbal - Android Developer specializing in Kotlin and Jetpack Compose.">
-    <!-- Browser Favicon (AI Text Icon) - Updated to Base64 to force refresh -->
+    <!-- Browser Favicon (AI Text Icon) - Base64 encoded -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjM0REQzg0IiAvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjUwIiBmaWxsPSIjMGYxNzJhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjM1ZW0iIGZvbnQtd2VpZ2h0PSJib2xkIj5BSTwvdGV4dD48L3N2Zz4=">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -119,11 +119,10 @@
 
     <!-- Hero Section -->
     <section id="about" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 overflow-hidden">
-        <div class="flex-1 space-y-6 animate-fade-in-up z-10">
+        <div class="flex-1 space-y-6 animate-fade-in-up z-10 relative">
             <!-- Profile Picture -->
             <div class="relative w-32 h-32 mb-2 group">
                 <div class="absolute inset-0 bg-android rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                <!-- UPDATED: Pointing to local file Ashik_Iqbal.jpg -->
                 <img src="Ashik_Iqbal.jpg" 
                      alt="Ashik Iqbal" 
                      class="relative w-32 h-32 rounded-full border-4 border-slate-800 object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105">
@@ -161,9 +160,10 @@
         </div>
         
         <!-- Mobile Code Visual with Scattered Stickers -->
-        <div class="flex-1 w-full flex justify-center relative mt-12 md:mt-0">
-            <!-- Stickers Container (Relative to the phone wrapper) -->
-            <div class="relative w-72 h-[580px]">
+        <div class="flex-1 w-full flex justify-center relative mt-20 md:mt-0">
+            <!-- Stickers Container -->
+            <!-- Mobile Fix: Scaled down (0.60) and centered -->
+            <div class="relative w-72 h-[580px] transform scale-[0.60] sm:scale-100 origin-top md:origin-center transition-transform duration-300 mx-auto">
                 
                 <!-- Left Side Stickers -->
                 <!-- Kotlin -->
@@ -188,14 +188,29 @@
                 </div>
 
                 <!-- Right Side Stickers -->
-                <!-- Jetpack Compose (Correct Logo) -->
-                <div class="absolute -right-16 top-10 w-16 h-16 bg-slate-300 p-2 rounded-xl shadow-2xl rotate-12 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Jetpack Compose">
-                    <img src="https://developer.android.com/static/images/jetpack/compose_logo.svg" alt="Compose" class="w-full h-full">
+                
+                <!-- Jetpack Compose (Embedded SVG for Reliability - Standard Hexagon) -->
+                <div class="absolute -right-16 top-10 w-16 h-16 bg-slate-300 p-3 rounded-xl shadow-2xl rotate-12 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Jetpack Compose">
+                    <svg viewBox="0 0 166 166" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <circle cx="83" cy="83" r="70" fill="#073042"/>
+                        <path d="M83 23 L143 53 L143 113 L83 143 L23 113 L23 53 Z" fill="#4285f4"/>
+                        <path d="M83 23 L143 53 L83 83 L23 53 Z" fill="#3ddc84"/>
+                        <path d="M23 53 L83 83 L83 143 L23 113 Z" fill="#073042"/>
+                    </svg>
                 </div>
-                <!-- Compose Multiplatform (Using Compose logo as representative) -->
-                <div class="absolute -right-8 top-40 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl -rotate-12 z-0 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Compose Multiplatform">
-                   <img src="https://developer.android.com/static/images/jetpack/compose_logo.svg" alt="Compose Multiplatform" class="w-full h-full">
+
+                <!-- Compose Multiplatform (Embedded SVG - Standard Hexagon) -->
+                <div class="absolute -right-8 top-40 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl -rotate-12 z-0 hover:scale-110 transition-transform duration-300 hover:rotate-0 flex flex-col items-center justify-center" title="Compose Multiplatform">
+                   <div class="w-full h-full p-1 relative">
+                        <svg viewBox="0 0 166 166" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="83" cy="83" r="70" fill="#073042"/>
+                            <path d="M83 23 L143 53 L143 113 L83 143 L23 113 L23 53 Z" fill="#4285f4"/>
+                            <path d="M83 23 L143 53 L83 83 L23 53 Z" fill="#3ddc84"/>
+                            <path d="M23 53 L83 83 L83 143 L23 113 Z" fill="#073042"/>
+                        </svg>
+                   </div>
                 </div>
+
                 <!-- Python -->
                 <div class="absolute -right-24 bottom-1/2 w-14 h-14 bg-slate-300 p-2 rounded-xl shadow-2xl rotate-45 z-20 hover:scale-110 transition-transform duration-300 hover:rotate-0" title="Python">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-full h-full">
@@ -264,7 +279,7 @@
                             <span class="text-android font-mono text-sm">June 2025 - Present</span>
                         </div>
                         <!-- Content -->
-                        <!-- UPDATED: Added md:ml-8 to prevent overlap with timeline dot -->
+                        <!-- Added md:ml-8 to prevent overlap with timeline dot -->
                         <div class="flex-1 md:ml-8 glass-card p-6 rounded-2xl hover:border-android/50 transition-colors">
                             <div class="flex justify-between items-start mb-4">
                                 <div>
@@ -281,7 +296,6 @@
                             </ul>
                         </div>
                         <!-- Timeline Node (Desktop) -->
-                        <!-- Adjusted position slightly to ensure centering on the gap -->
                         <div class="hidden md:block absolute left-[158px] top-6 w-4 h-4 rounded-full bg-android ring-8 ring-slate-900 transform -translate-x-1/2"></div>
                     </div>
                 </div>
