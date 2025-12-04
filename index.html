@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashik Iqbal | Jr. Software Engineer</title>
     <meta name="description" content="Portfolio of Ashik Iqbal - Jr. Software Engineer & Android Developer specializing in Kotlin and Jetpack Compose.">
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjM0REQzg0IiAvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjUwIiBmaWxsPSIjMGYxNzJhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjM1ZW0iIGZvbnQtd2VpZ2h0PSJib2xkIj5BSTwvdGV4dD48L3N2Zz4=">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Markdown Parser -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
     <script>
@@ -36,7 +41,7 @@
         }
     </script>
     <style>
-        /* Custom scrollbar for code-like feel */
+        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
@@ -46,7 +51,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        /* AI Chat Animations */
+        /* Animations */
         @keyframes slideIn {
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -525,7 +530,7 @@
 
     <script>
         // =========================================================================
-        // YOUR API KEY (KEPT FROM YOUR ORIGINAL CODE)
+        // IMPORTANT: PASTE YOUR GEMINI API KEY BELOW INSIDE THE QUOTES
         // =========================================================================
         const apiKey = "AIzaSyCEmr3ZfG8xhHp6Lu9jTr2eGGAGpzuLeJY"; 
         
@@ -567,13 +572,11 @@
         - Campus Ambassador, UAP TechThrone 2025
         `;
 
-        // --- Mobile Menu Toggle ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // --- Chat Widget Logic ---
         const chatWindow = document.getElementById('chat-window');
         const messagesContainer = document.getElementById('chat-messages');
         let chatOpen = false;
@@ -582,7 +585,6 @@
             chatOpen = !chatOpen;
             if (chatOpen) {
                 chatWindow.classList.remove('hidden');
-                // Small timeout to allow removing hidden before animating opacity
                 setTimeout(() => {
                     chatWindow.classList.remove('scale-95', 'opacity-0');
                     chatWindow.classList.add('scale-100', 'opacity-100');
@@ -609,21 +611,17 @@
             const userText = input.value.trim();
             if (!userText) return;
 
-            // Check if user forgot to add key
             if (apiKey === "PASTE_YOUR_API_KEY_HERE" || apiKey === "") {
                 alert("Please add your Gemini API Key in the code to make the AI work!");
                 return;
             }
 
-            // Add User Message
             addMessage(userText, 'user');
             input.value = '';
 
-            // Add Loading Indicator
             const loadingId = addLoading();
 
             try {
-                // Construct Prompt
                 const systemPrompt = `You are the AI Assistant for Ashik Iqbal's portfolio. 
                 Your goal is to get Ashik hired as an Android Developer.
                 You are professional, enthusiastic, and concise.
@@ -637,13 +635,18 @@
                 If asked about SMAC IT, emphasize his work on the HRMS/Payroll system and Google Maps integration.
                 Keep answers short (under 3 sentences) unless asked for details.`;
 
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                // UPDATED MODEL to gemini-1.5-flash (Publicly available)
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{ parts: [{ text: systemPrompt }] }]
                     })
                 });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText}`);
+                }
 
                 const data = await response.json();
                 const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble connecting right now. Try again later!";
@@ -670,7 +673,6 @@
                 ? 'bg-slate-800 text-slate-200 rounded-tl-none' 
                 : 'bg-android text-slate-900 rounded-tr-none font-medium';
 
-            // Parse Markdown for AI messages
             const content = sender === 'ai' ? marked.parse(text) : text;
 
             div.innerHTML = `
@@ -701,7 +703,6 @@
             return id;
         }
 
-        // --- Magic Email Drafter Logic ---
         async function generateDraft() {
             const input = document.getElementById('draftInput').value;
             const btn = document.getElementById('draftBtn');
@@ -714,7 +715,6 @@
                 return;
             }
 
-            // UI Loading State
             const originalBtnText = btn.innerHTML;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Drafting...`;
             btn.disabled = true;
@@ -733,13 +733,18 @@
                 - Use placeholders like [My Name] for missing info.
                 `;
 
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                // UPDATED MODEL to gemini-1.5-flash
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{ parts: [{ text: systemPrompt }] }]
                     })
                 });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText}`);
+                }
 
                 const data = await response.json();
                 const draft = data.candidates?.[0]?.content?.parts?.[0]?.text || "Error generating draft.";
@@ -767,7 +772,6 @@
             }, 2000);
         }
 
-        // Smooth Scroll adjustment
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -779,6 +783,3 @@
     </script>
 </body>
 </html>
-
-
-
